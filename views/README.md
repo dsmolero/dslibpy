@@ -1,5 +1,5 @@
 dslibpy.views.restricted
-=====================
+========================
 Django Class-Based-Views with Object-Level Permissions Checking
 ---------------------------------------------------------------
 Author: [__Darwin Molero__](http://blog.darwiniansoftware.com/about)
