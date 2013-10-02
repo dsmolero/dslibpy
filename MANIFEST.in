@@ -1,0 +1,7 @@
+include README.rst
+include LICENSE.txt
+include CHANGELOG.txt
+include dslibpy/numbers/README.rst
+include dslibpy/templatetags/README.rst
+include dslibpy/views/README.rst
+recursive-include docs *

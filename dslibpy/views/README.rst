@@ -7,40 +7,11 @@ Author: [__Darwin Molero__](http://blog.darwiniansoftware.com/about)
 
 Description:
 ------------
-No need for `@login_required` and `@permission_required` decorators. These reusable Django
-class-based-views will provide object-level permissions to its subclasses more than
-what those two can offer. These views take a step ahead by giving an option to make
-views accessible only to the owner of the object (via the usual model attributes
-`.user`, `.owner`, or `.creator`).
-
-Files:
-------
-    dslibpy/
-        views/
-            __init__.py
-            README.md
-            restricted.py
-
-Requirements:
--------------
-* python 2.7+   (tested upto python 2.7.3)
-* django 1.3+   (tested with django < 1.4)
-
-Installation:
--------------
-You can download the .zip file [here](https://github.com/darwinmolero/dslibpy). Extract
-and place the dslibpy folder in your project root directory. So if your project is
-in the folder:
-
-    ~/django/myproject
-
-then the folder dslibpy will be in:
-
-    ~/django/myproject/dslibpy/
-
-(Geek says "I will put mine in /usr/local/bin/dslibpy/ and symlink it to my project root.")
-
-Well? ^_6
+No need for `@login_required` and `@permission_required` decorators. These
+reusable Django class-based-views will provide object-level permissions to its
+subclasses more than what those two can offer. These views take a step ahead by
+giving an option to make views accessible only to the owner of the object (via
+the usual model attributes `.user`, `.owner`, or `.creator`).
 
 Classes:
 --------
@@ -66,7 +37,8 @@ There are 8 restriction levels that you can assign to your class-based-views:
 - 0 - Nobody has access (not even you? aw!)
 - 1 - Only super users have access.
 - 2 - Any staff with permissions have access.
-- 3 - The owner of the object have access (request.user == object.user, object.owner, etc.)
+- 3 - The owner of the object have access (request.user == object.user,
+      object.owner, etc.)
 - 4 - Any logged-in user with model-level permissions have access.
 - 5 - Any staff have access (request.user.is_staff == True).
 - 6 - Any logged-in user have access (request.user.is_authenticated() == True).
@@ -83,10 +55,10 @@ For example:
 
 will only allow superusers (admins) to delete Blog objects.
 
-The restrictions filter-through, meaning a user is evaluated from the top (level 1)
-downwards until the user qualifies on a level which grants him/her access.
-When a user fails to pass the restriction level set for the view, a `PermissionDenied()`
-exception is thrown.
+The restrictions filter-through, meaning a user is evaluated from the top
+(level 1) downwards until the user qualifies on a level which grants him/her
+access. When a user fails to pass the restriction level set for the view, a
+`PermissionDenied()` exception is thrown.
 
 ### .owner_field attribute:
 
@@ -95,8 +67,8 @@ set the `owner_field` attribute to the name of the field that is a ForeignKey
 to `django.contrib.auth.models.User`. This attribute is a string. It is
 mainly used to views that have `restriction = 3`.
 
-You do not have to declare an `owner_field` attribute if you don't need restriction
-level 3. It will simply be ignored in other restriction levels.
+You do not have to declare an `owner_field` attribute if you don't need
+restriction level 3. It will simply be ignored in other restriction levels.
 
 For example:
 
@@ -221,4 +193,4 @@ alongside the reusable features of your existing class-based-views.
 Just make sure that `RestrictedMixin` is the first in the list of base
 classes so that its methods are called first in the command chain.
 
-[(Back to Main Page)](../README.md)
+[(Back to Main Page)]/README.rst)
