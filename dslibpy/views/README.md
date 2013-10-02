@@ -1,20 +1,20 @@
 dslibpy.views.restricted
 ========================
-Django Class-Based-Views with Object-Level Permissions Checking
+DJANGO CLASS-BASED-VIEWS WITH OBJECT-LEVEL PERMISSIONS CHECKING
 ---------------------------------------------------------------
-Author: [__Darwin Molero__](http://blog.darwiniansoftware.com/about)
-(best viewed with a Markdown viewer.)
+##### Darwinian Software Library for Python
+Author: [Darwin Molero](http://blog.darwiniansoftware.com/about)
 
-Description:
-------------
+Description
+-----------
 No need for `@login_required` and `@permission_required` decorators. These
 reusable Django class-based-views will provide object-level permissions to its
 subclasses more than what those two can offer. These views take a step ahead by
 giving an option to make views accessible only to the owner of the object (via
 the usual model attributes `.user`, `.owner`, or `.creator`).
 
-Classes:
---------
+Classes
+-------
 1. RestrictedCreateView
         - subclass of django.views.generic.CreateView
 2. RestrictedDetailView
@@ -28,21 +28,21 @@ Classes:
 6. RestrictedMixin
         - for use with views that inherit from other classes
 
-Usage:
-------
-### .restriction attribute:
+Usage
+-----
+### .restriction attribute
 
 There are 8 restriction levels that you can assign to your class-based-views:
 
-- 0 - Nobody has access (not even you? aw!)
-- 1 - Only super users have access.
-- 2 - Any staff with permissions have access.
-- 3 - The owner of the object have access (request.user == object.user,
+* 0 - Nobody has access (not even you? aw!)
+* 1 - Only super users have access.
+* 2 - Any staff with permissions have access.
+* 3 - The owner of the object have access (request.user == object.user,
       object.owner, etc.)
-- 4 - Any logged-in user with model-level permissions have access.
-- 5 - Any staff have access (request.user.is_staff == True).
-- 6 - Any logged-in user have access (request.user.is_authenticated() == True).
-- 7 - Anybody have access.
+* 4 - Any logged-in user with model-level permissions have access.
+* 5 - Any staff have access (request.user.is_staff == True).
+* 6 - Any logged-in user have access (request.user.is_authenticated() == True).
+* 7 - Anybody have access.
 
 You set the restriction through the `restriction` attribute of the view class.
 This attribute is an integer (not string).
@@ -60,7 +60,7 @@ The restrictions filter-through, meaning a user is evaluated from the top
 access. When a user fails to pass the restriction level set for the view, a
 `PermissionDenied()` exception is thrown.
 
-### .owner_field attribute:
+### .owner_field attribute
 
 For models in which objects belong to a user (i.e. owned by a user).
 set the `owner_field` attribute to the name of the field that is a ForeignKey
@@ -102,10 +102,10 @@ do this and the view will safely ignore objects that do not have owners in the
 first place. To be exact, this view will grant access to levels 1 and 2 users
 only although it indicates level 3.
 
-### More Examples:
+### More Examples
 The following usage examples are based on the Blog model above.
 
-### Using RestrictedCreateView:
+### Using RestrictedCreateView
 
 this code:
 
@@ -122,7 +122,7 @@ Also it grants access not only to the owner and the admins but also to
 any authenticated user who is a staff (is_staff == True) and to any
 authenticated user who has "add" permissions on the Blog model.
 
-### Using RestrictedDetailView:
+### Using RestrictedDetailView
 
 this code:
 
@@ -137,7 +137,7 @@ will only allow admins, and staff users (is_staff == True) who have "view"
 permissions on the Blog model.
 
 
-### Using RestrictedListView:
+### Using RestrictedListView
 
 this code:
 
@@ -162,16 +162,16 @@ user object (request.user). Aside from that, the usual attributes like
 `template_name`, `success_url`, etc. retain their default behaviors.
 
 
-### Using RestrictedUpdateView:
+### Using RestrictedUpdateView
 
 The first example already covered using this view. Please refer to it.
 
-### Using RestrictedDeleteView:
+### Using RestrictedDeleteView
 
 I will leave the usage of this view as an exercise for you. Besides, this
 documentation has become longer than what I thought.
 
-### Using RestrictedMixin:
+### Using RestrictedMixin
 
 this code:
 
@@ -193,4 +193,4 @@ alongside the reusable features of your existing class-based-views.
 Just make sure that `RestrictedMixin` is the first in the list of base
 classes so that its methods are called first in the command chain.
 
-[(Back to Main Page)]/README.rst)
+<< [Back to Main](../../README.md)

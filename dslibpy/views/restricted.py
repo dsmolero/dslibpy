@@ -1,11 +1,11 @@
 """
-restricted.py
+dslibpy.views.restricted.py
 
 Django Class-Based-Views with Object-Level Permissions Checking
 
 """
 
-__author__ = 'Darwin Molero'
+__author__ = 'Darwin Molero (http://darwiniansoftware.com)'
 
 from django.core import exceptions
 from django.core.exceptions import ImproperlyConfigured
