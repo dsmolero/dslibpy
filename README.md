@@ -1,48 +1,54 @@
-dslibpy
-=======
-Darwinian Software Python library
----------------------------------
-Author: [__Darwin Molero__](http://blog.darwiniansoftware.com/about)
-(this document is best viewed with a Markdown viewer.)
+dslibpy v0.10.0.0
+=================
+DARWINIAN SOFTWARE LIBRARY FOR PYTHON
+-------------------------------------
+Author: [Darwin Molero](http://blog.darwiniansoftware.com/about)
 
-Description:
+Description
+-----------
+Contains Django/Python reusable codes. Developed by Darwin Molero, a Web
+Developer.
+
+Visit [DarwinianSoftware](http://blog.darwiniansoftware.com) for more of his
+articles.
+
+Requirements
 ------------
-Contains Django/Python reusable codes. Developed by Darwin Molero, a Web Developer.
-
-Visit [__DarwinianSoftware__](http://blog.darwiniansoftware.com) for more of his articles.
-
-Requirements:
--------------
 * python 2.7+   (tested upto python 2.7.3)
 * django 1.3+   (tested with django < 1.4)
 
-Installation:
--------------
-You can download the .zip file [here](https://github.com/darwinmolero/dslibpy). Extract
-and place the dslibpy folder in your project root directory. So if your project is
-in the folder:
+Installation
+------------
+You can download the tar ball from [GitHub]
+(https://github.com/dsmolero/dslibpy).
 
-    ~/django/myproject
+### Using pip
 
-then the folder dslibpy will be in:
+    $ pip install dslibpy-v.v.v.v.tar.gz
 
-    ~/django/myproject/dslibpy/
+where v.v.v.v is the version number.
 
-(Geek says "I will put mine in /usr/local/bin/dslibpy/ and symlink it to my project root.")
+### Using setup_tools
+Extract the tar ball:
 
-Well? ^_6
+    $ tar -xzf dslibpy-v.v.v.v.tar.gz
 
-Modules:
---------
+Then install:
+
+    $ cd dslibpy
+    $ python setup.py install
+
+Modules
+-------
 
 ### dslibpy.views.restricted
-Django class-based-views with object-level permissions checking. Documentation found in
-[dslibpy/views/README.md](views/README.md)
+Django class-based-views with object-level permissions checking.
+Documentation found in [dslibpy/views/README.md](dslibpy/views/README.md).
 
 ### dslibpy.numbers
-Reusable utility functions to format numbers that have decimal parts. Documentation found in
-[dslibpy/numbers/README.md](numbers/README.md)
+Reusable utility functions to format numbers that have decimal parts.
+Documentation found in [dslibpy/numbers/README.md](dslibpy/numbers/README.md).
 
 ### dslibpy.templatetags
-Reusable template tags for formatting numbers, dates in templates. Documentation found in
-[dslibpy/templatetags/README.md](templatetags/README.md)
+Reusable template tags for formatting numbers, dates in templates. Documentation
+found in [dslibpy/templatetags/README.md](dslibpy/templatetags/README.md).

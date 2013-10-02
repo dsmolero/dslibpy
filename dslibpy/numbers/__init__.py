@@ -1,9 +1,9 @@
-__author__ = 'darwin'
+__author__ = 'Darwin Molero (http://darwiniansoftware.com)'
 
 from django.contrib.humanize.templatetags.humanize import intcomma
 
 
-def format_currency(amount, decimals=4):
+def deccomma(amount, decimals=4):
     """
     Format numbers with commas and 4 decimal places.
     """

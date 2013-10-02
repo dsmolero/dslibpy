@@ -1,4 +1,4 @@
-__author__ = 'Darwin Molero'
+__author__ = 'Darwin Molero (http://darwiniansoftware.com)'
 
 from django.contrib.auth.models import User
 from django.db import models

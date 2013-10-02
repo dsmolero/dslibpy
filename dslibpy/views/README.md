@@ -1,49 +1,20 @@
 dslibpy.views.restricted
 ========================
-Django Class-Based-Views with Object-Level Permissions Checking
+DJANGO CLASS-BASED-VIEWS WITH OBJECT-LEVEL PERMISSIONS CHECKING
 ---------------------------------------------------------------
-Author: [__Darwin Molero__](http://blog.darwiniansoftware.com/about)
-(best viewed with a Markdown viewer.)
+##### Darwinian Software Library for Python
+Author: [Darwin Molero](http://blog.darwiniansoftware.com/about)
 
-Description:
-------------
-No need for `@login_required` and `@permission_required` decorators. These reusable Django
-class-based-views will provide object-level permissions to its subclasses more than
-what those two can offer. These views take a step ahead by giving an option to make
-views accessible only to the owner of the object (via the usual model attributes
-`.user`, `.owner`, or `.creator`).
+Description
+-----------
+No need for `@login_required` and `@permission_required` decorators. These
+reusable Django class-based-views will provide object-level permissions to its
+subclasses more than what those two can offer. These views take a step ahead by
+giving an option to make views accessible only to the owner of the object (via
+the usual model attributes `.user`, `.owner`, or `.creator`).
 
-Files:
-------
-    dslibpy/
-        views/
-            __init__.py
-            README.md
-            restricted.py
-
-Requirements:
--------------
-* python 2.7+   (tested upto python 2.7.3)
-* django 1.3+   (tested with django < 1.4)
-
-Installation:
--------------
-You can download the .zip file [here](https://github.com/darwinmolero/dslibpy). Extract
-and place the dslibpy folder in your project root directory. So if your project is
-in the folder:
-
-    ~/django/myproject
-
-then the folder dslibpy will be in:
-
-    ~/django/myproject/dslibpy/
-
-(Geek says "I will put mine in /usr/local/bin/dslibpy/ and symlink it to my project root.")
-
-Well? ^_6
-
-Classes:
---------
+Classes
+-------
 1. RestrictedCreateView
         - subclass of django.views.generic.CreateView
 2. RestrictedDetailView
@@ -57,20 +28,21 @@ Classes:
 6. RestrictedMixin
         - for use with views that inherit from other classes
 
-Usage:
-------
-### .restriction attribute:
+Usage
+-----
+### .restriction attribute
 
 There are 8 restriction levels that you can assign to your class-based-views:
 
-- 0 - Nobody has access (not even you? aw!)
-- 1 - Only super users have access.
-- 2 - Any staff with permissions have access.
-- 3 - The owner of the object have access (request.user == object.user, object.owner, etc.)
-- 4 - Any logged-in user with model-level permissions have access.
-- 5 - Any staff have access (request.user.is_staff == True).
-- 6 - Any logged-in user have access (request.user.is_authenticated() == True).
-- 7 - Anybody have access.
+* 0 - Nobody has access (not even you? aw!)
+* 1 - Only super users have access.
+* 2 - Any staff with permissions have access.
+* 3 - The owner of the object have access (request.user == object.user,
+      object.owner, etc.)
+* 4 - Any logged-in user with model-level permissions have access.
+* 5 - Any staff have access (request.user.is_staff == True).
+* 6 - Any logged-in user have access (request.user.is_authenticated() == True).
+* 7 - Anybody have access.
 
 You set the restriction through the `restriction` attribute of the view class.
 This attribute is an integer (not string).
@@ -83,20 +55,20 @@ For example:
 
 will only allow superusers (admins) to delete Blog objects.
 
-The restrictions filter-through, meaning a user is evaluated from the top (level 1)
-downwards until the user qualifies on a level which grants him/her access.
-When a user fails to pass the restriction level set for the view, a `PermissionDenied()`
-exception is thrown.
+The restrictions filter-through, meaning a user is evaluated from the top
+(level 1) downwards until the user qualifies on a level which grants him/her
+access. When a user fails to pass the restriction level set for the view, a
+`PermissionDenied()` exception is thrown.
 
-### .owner_field attribute:
+### .owner_field attribute
 
 For models in which objects belong to a user (i.e. owned by a user).
 set the `owner_field` attribute to the name of the field that is a ForeignKey
 to `django.contrib.auth.models.User`. This attribute is a string. It is
 mainly used to views that have `restriction = 3`.
 
-You do not have to declare an `owner_field` attribute if you don't need restriction
-level 3. It will simply be ignored in other restriction levels.
+You do not have to declare an `owner_field` attribute if you don't need
+restriction level 3. It will simply be ignored in other restriction levels.
 
 For example:
 
@@ -130,10 +102,10 @@ do this and the view will safely ignore objects that do not have owners in the
 first place. To be exact, this view will grant access to levels 1 and 2 users
 only although it indicates level 3.
 
-### More Examples:
+### More Examples
 The following usage examples are based on the Blog model above.
 
-### Using RestrictedCreateView:
+### Using RestrictedCreateView
 
 this code:
 
@@ -150,7 +122,7 @@ Also it grants access not only to the owner and the admins but also to
 any authenticated user who is a staff (is_staff == True) and to any
 authenticated user who has "add" permissions on the Blog model.
 
-### Using RestrictedDetailView:
+### Using RestrictedDetailView
 
 this code:
 
@@ -165,7 +137,7 @@ will only allow admins, and staff users (is_staff == True) who have "view"
 permissions on the Blog model.
 
 
-### Using RestrictedListView:
+### Using RestrictedListView
 
 this code:
 
@@ -190,16 +162,16 @@ user object (request.user). Aside from that, the usual attributes like
 `template_name`, `success_url`, etc. retain their default behaviors.
 
 
-### Using RestrictedUpdateView:
+### Using RestrictedUpdateView
 
 The first example already covered using this view. Please refer to it.
 
-### Using RestrictedDeleteView:
+### Using RestrictedDeleteView
 
 I will leave the usage of this view as an exercise for you. Besides, this
 documentation has become longer than what I thought.
 
-### Using RestrictedMixin:
+### Using RestrictedMixin
 
 this code:
 
@@ -221,4 +193,4 @@ alongside the reusable features of your existing class-based-views.
 Just make sure that `RestrictedMixin` is the first in the list of base
 classes so that its methods are called first in the command chain.
 
-[(Back to Main Page)](../README.md)
+<< [Back to Main](../../README.md)
