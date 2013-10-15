@@ -2,6 +2,7 @@
 *.pot
 *.pyc
 local_settings.py
+readme-dev.md
 *.egg
 *.egg-info
 dist
