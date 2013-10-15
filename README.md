@@ -1,5 +1,6 @@
-dslibpy v0.10.0.0
-=================
+[dslibpy v0.10.0.1](https://github.com/dsmolero/dslibpy)
+========================================================
+
 DARWINIAN SOFTWARE LIBRARY FOR PYTHON
 -------------------------------------
 Author: [Darwin Molero](http://blog.darwiniansoftware.com/about)
@@ -15,12 +16,12 @@ articles.
 Requirements
 ------------
 * python 2.7+   (tested upto python 2.7.3)
-* django 1.3+   (tested with django < 1.4)
+* django 1.2+   (tested with django 1.3)
 
 Installation
 ------------
 You can download the tar ball from [GitHub]
-(https://github.com/dsmolero/dslibpy).
+(https://github.com/dsmolero/dslibpy/releases).
 
 ### Using pip
 
