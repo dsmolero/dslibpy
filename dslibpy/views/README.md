@@ -36,12 +36,12 @@ There are 8 restriction levels that you can assign to your class-based-views:
 
 * 0 - Nobody has access (not even you? aw!)
 * 1 - Only super users have access.
-* 2 - Any staff with permissions have access.
-* 3 - The owner of the object have access (request.user == object.user,
+* 2 - Any staff with permissions has access.
+* 3 - The owner of the object has access (request.user == object.user,
       object.owner, etc.)
-* 4 - Any logged-in user with model-level permissions have access.
-* 5 - Any staff have access (request.user.is_staff == True).
-* 6 - Any logged-in user have access (request.user.is_authenticated() == True).
+* 4 - Any logged-in user with model-level permissions has access.
+* 5 - Any staff has access (request.user.is_staff == True).
+* 6 - Any logged-in user has access (request.user.is_authenticated() == True).
 * 7 - Anybody have access.
 
 You set the restriction through the `restriction` attribute of the view class.

@@ -5,6 +5,13 @@ CHANGE LOG
 ##### Darwinian Software Library for Python
 Author: [Darwin Molero](http://blog.darwiniansoftware.com/about)
 
+_______________________________________________________________________________
+v0.10.0.1
+---------
+Lowered the requirement to Django 1.2
+
+Fixed grammar errors in the documentation.
+
 ________________________________________________________________________________
 v0.10.0.0
 ---------

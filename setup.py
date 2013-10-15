@@ -10,7 +10,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='dslibpy',
-    version='0.10.0.0',
+    version='0.10.0.1',
     packages=[
         'dslibpy',
         'dslibpy.numbers',
@@ -40,6 +40,6 @@ setup(
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
     install_requires=[
-        "Django >= 1.3",
+        "Django >= 1.2",
     ]
 )
