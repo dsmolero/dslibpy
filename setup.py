@@ -10,7 +10,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='dslibpy',
-    version='0.10.0.1',
+    version='0.10.0.2',
     packages=[
         'dslibpy',
         'dslibpy.numbers',

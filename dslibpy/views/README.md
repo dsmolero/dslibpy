@@ -85,6 +85,7 @@ For example:
     #views.py----------------------------------------------
 
     from dslibpy.views.restricted import RestrictedUpdateView
+    from myproject.blogs.models import Blog
     from myproject.blogs.forms import BlogModelForm
 
     class BlogRestrictedUpdateView(RestrictedUpdateView):
@@ -110,6 +111,7 @@ The following usage examples are based on the Blog model above.
 this code:
 
     from dslibpy.views.restricted import RestrictedCreateView
+    from myproject.blogs.models import Blog
 
     class BlogRestrictedCreateView(RestrictedCreateView):
         model = Blog
@@ -127,6 +129,7 @@ authenticated user who has "add" permissions on the Blog model.
 this code:
 
     from dslibpy.views.restricted import RestrictedDetailView
+    from myproject.blogs.models import Blog
 
     class BlogRestrictedDetailView(RestrictedDetailView):
         model = Blog
@@ -142,6 +145,7 @@ permissions on the Blog model.
 this code:
 
     from dslibpy.views.restricted import RestrictedListView
+    from myproject.blogs.models import Blog
 
     class BlogRestrictedListView(RestrictedListView):
         model = Blog
@@ -150,7 +154,7 @@ this code:
         restriction = 7
 
         def get_queryset_perm(self, user):
-            queryset = super(StockPositions, self).get_queryset_perm(user)
+            queryset = super(Blog, self).get_queryset_perm(user)
             # one-million-lines-of-code-here
 
 will allow all users including guests and visitors who are not logged in
@@ -176,6 +180,7 @@ documentation has become longer than what I thought.
 this code:
 
     from dslibpy.views.restricted import RestrictedMixin
+    from dslibpy.profiles.models import CustomerProfile, VendorProfile
     from myproject.profiles.views import ProfileUpdateView
 
     class CustomerProfileUpdateView(RestrictedMixin, ProfileUpdateView):
