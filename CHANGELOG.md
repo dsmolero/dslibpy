@@ -5,6 +5,10 @@ CHANGE LOG
 ##### Darwinian Software Library for Python
 Author: [Darwin Molero](http://blog.darwiniansoftware.com/about)
 
+v0.10.0.2
+---------
+Fixed bugs in README.md documentation examples.
+
 _______________________________________________________________________________
 v0.10.0.1
 ---------
