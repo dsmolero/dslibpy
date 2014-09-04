@@ -4,7 +4,7 @@ __author__ = "Darwin Molero (http://darwiniansoftware.com)"
 import datetime
 #from datetime import datetime
 from django.template import Library
-from django.utils.html import conditional_escape
+# from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
 
 register = Library()

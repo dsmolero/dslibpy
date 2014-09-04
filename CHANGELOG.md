@@ -5,6 +5,16 @@ CHANGE LOG
 ##### Darwinian Software Library for Python
 Author: [Darwin Molero](http://blog.darwiniansoftware.com/about)
 
+_______________________________________________________________________________
+v0.10.1.0
+---------
+Renamed dslibpy.numbers to dslibpy.numlib to avoid collision with python's numbers package.
+
+Fixed a bug in dslibpy.numlib.deccomma that removes the sign when converting negative fractions between -1 and 0.
+
+Added the tests project to build test suites for dslibpy .
+
+
 v0.10.0.2
 ---------
 Fixed bugs in README.md documentation examples.

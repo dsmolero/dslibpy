@@ -48,31 +48,23 @@ class RestrictedMixin(object):
             ret = (getattr(obj, self.owner_field) == user)
         else:
             ret = True
-        print ".._is_owner == %s" % ret
         return ret
 
     def _filter_access(self, user, obj=None):
         if self.restriction >= 1 and user.is_superuser:
-            print "..passed 1"
-            #pass
+            pass
         elif self.restriction >= 2 and user.is_staff and self._has_perm(user):
-            print "..passed 2"
-            #pass
+            pass
         elif self.restriction >= 3 and self._is_owner(user, obj):
-            print "..passed 3"
-            #pass
+            pass
         elif self.restriction >= 4 and self._has_perm(user):
-            print "..passed 4"
-            #pass  # happens in CreateView
+            pass  # happens in CreateView
         elif self.restriction >= 5 and user.is_staff:
-            print "..passed 5"
-            #pass
+            pass
         elif self.restriction >= 6 and user.is_authenticated():
-            print "..passed 6"
-            #pass
+            pass
         elif self.restriction >= 7:
-            print "..passed 7"
-            #pass
+            pass
         else:
             raise exceptions.PermissionDenied()
 
@@ -116,7 +108,6 @@ class RestrictedDetailView(RestrictedMixin, DetailView):
 
     def get(self, request, **kwargs):
         self.object = self.get_object()
-        print '..'
         self._filter_access(request.user, self.object)
         context = self.get_context_data(object=self.object)
         return self.render_to_response(context)
