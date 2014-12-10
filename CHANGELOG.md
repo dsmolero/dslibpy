@@ -5,6 +5,12 @@ CHANGE LOG
 ##### Darwinian Software Library for Python
 Author: [Darwin Molero](http://blog.darwiniansoftware.com/about)
 
+v0.11.1
+-------
+Removed template tag colored_date as it is specific to a particular application and not as a generic library.
+
+Added documentation for date_tags.shorten_datetime template tag.
+
 
 v0.11
 -----
