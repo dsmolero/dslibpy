@@ -5,7 +5,12 @@ CHANGE LOG
 ##### Darwinian Software Library for Python
 Author: [Darwin Molero](http://blog.darwiniansoftware.com/about)
 
-_______________________________________________________________________________
+
+v0.11
+-----
+Added template tag date_tags
+
+
 v0.10.1.0
 ---------
 Renamed dslibpy.numbers to dslibpy.numlib to avoid collision with python's numbers package.
@@ -19,14 +24,14 @@ v0.10.0.2
 ---------
 Fixed bugs in README.md documentation examples.
 
-_______________________________________________________________________________
+
 v0.10.0.1
 ---------
 Lowered the requirement to Django 1.2
 
 Fixed grammar errors in the documentation.
 
-________________________________________________________________________________
+
 v0.10.0.0
 ---------
 Packaged dslibpy into a Python redistributable.
