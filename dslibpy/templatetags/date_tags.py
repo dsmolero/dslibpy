@@ -9,7 +9,7 @@ from django.utils.safestring import mark_safe
 
 register = Library()
 
-#-------------------------------------------------------------------------------
+
 @register.filter
 def colored_date(date, date_format="%b-%d-%Y", time_format="%I:%M%p"):
     """
@@ -41,3 +41,20 @@ def colored_date(date, date_format="%b-%d-%Y", time_format="%I:%M%p"):
     time_str = date.strftime(time_format).lower()
     ret = '<span class="{0}">{1} {2}</span>'.format(class_str, date_str, time_str)
     return mark_safe(ret)
+
+
+@register.filter
+def shorten_datetime(dt):
+    """
+    Given a datetime:
+    return only the time if the given datetime is today,
+    otherwise, return only the date.
+    :param dt:
+    :return datetime:
+    """
+    present = datetime.datetime.now()
+
+    if dt.date() == present.date():
+        return dt.time()
+    else:
+        return dt.date()

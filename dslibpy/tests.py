@@ -8,9 +8,11 @@ Replace this with more appropriate tests for your application.
 
 __author__ = "Darwin Molero (http://darwiniansoftware.com)"
 
-import unittest
+import datetime
+from django.utils import unittest
 
 from numlib import deccomma
+from templatetags import date_tags
 
 
 class SimpleTest(unittest.TestCase):
@@ -21,7 +23,7 @@ class SimpleTest(unittest.TestCase):
         self.assertEqual(1 + 1, 2)
 
 
-class NumbersTest(unittest.TestCase):
+class NumlibTest(unittest.TestCase):
 
     KNOWN_VALUES = (
         (0.44, "0.4400"),
@@ -34,10 +36,23 @@ class NumbersTest(unittest.TestCase):
         (1.56789, "1.5679"),
     )
 
-    def test_num_to_string(self):
+    def test_deccomma(self):
         for n, s in self.KNOWN_VALUES:
             result = deccomma(n)
             self.assertEqual(s, result)
+
+
+class TemplatetagsTest(unittest.TestCase):
+
+    def test_shorten_datetime(self):
+        # Test same date
+        today = datetime.datetime.now()
+        self.assertEqual(today.time(), date_tags.shorten_datetime(today))
+
+        # Test not same date
+        delta = datetime.timedelta(days=1)
+        yesterday = today - delta
+        self.assertEqual(yesterday.date(), date_tags.shorten_datetime(yesterday))
 
 
 if __name__ == '__main__':
