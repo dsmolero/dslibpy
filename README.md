@@ -1,4 +1,4 @@
-[dslibpy v0.11](https://github.com/dsmolero/dslibpy)
+[dslibpy v0.11.1](https://github.com/dsmolero/dslibpy)
 ========================================================
 
 DARWINIAN SOFTWARE LIBRARY FOR PYTHON
