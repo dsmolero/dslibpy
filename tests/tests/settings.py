@@ -35,8 +35,8 @@ TEMPLATE_DEBUG = True
 #
 INSTALLED_APPS = (
 #     'django.contrib.admin',
-#     'django.contrib.auth',
-#     'django.contrib.contenttypes',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
 #     'django.contrib.sessions',
 #     'django.contrib.messages',
 #     'django.contrib.staticfiles',
@@ -62,12 +62,12 @@ INSTALLED_APPS = (
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 #
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 #
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/

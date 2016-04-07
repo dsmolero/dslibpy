@@ -1,6 +1,4 @@
 include README.md
 include LICENSE.txt
 include CHANGELOG.md
-include dslibpy/numlib/README.md
 include dslibpy/templatetags/README.md
-include dslibpy/views/README.md

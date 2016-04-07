@@ -1,51 +1,33 @@
 __author__ = "Darwin Molero (http://darwiniansoftware.com)"
 
 
-from django.template import Library
-# from django.utils.html import conditional_escape
-from django.utils.safestring import mark_safe
+import locale
 
-from dslibpy import numlib
+from django.contrib.humanize.templatetags.humanize import intcomma
+from django.template import Library
+from django.template.defaultfilters import floatformat
+# from django.utils.html import conditional_escape
+
 
 register = Library()
 
-#-------------------------------------------------------------------------------
+
+@register.filter()
+def currency(value):
+    """
+    Use system locale settings to format currency numbers.
+    """
+    if not value:
+        return ""
+    locale.setlocale(locale.LC_ALL, '')
+    return locale.currency(value, grouping=True)
+
+
 @register.filter
-def deccomma(amount, decimals=4):
-    return numlib.deccomma(amount, decimals)
-
-#-------------------------------------------------------------------------------
-@register.filter
-def deccomma_color_html(amount):
+def deccomma(amount, decimals=2):
     """
-    Format numbers with commas and 2 decimal places.
+    Humanize a number in the standard form -99,999.99
     """
-    amt_str = numlib.deccomma(amount, 2)
-    class_str = _get_class_str(amount)
-    html = '<span class="{0}">{1}</span>'.format(class_str, amt_str)
-    return mark_safe(html)
-
-
-#-------------------------------------------------------------------------------
-@register.filter
-def percent_color_html(amount):
-    """
-    Format percent values with 2 decimal places and the percent sign.
-    """
-    if not amount or isinstance(amount, str):
-        return "-"
-    percent_str = numlib.deccomma(amount, 2)
-    class_str = _get_class_str(amount)
-    html = '<span class="{0}">{1}%</span>'.format(class_str, percent_str)
-    return mark_safe(html)
-
-
-#-------------------------------------------------------------------------------
-def _get_class_str(amount):
-    if amount > 0:
-        class_str = "positive"
-    elif amount < 0:
-        class_str = "negative"
-    else:
-        class_str = "zero"
-    return class_str
+    if not amount:
+        return ""
+    return intcomma(floatformat(amount, decimals))
