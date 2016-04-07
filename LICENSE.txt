@@ -1,1 +1,6 @@
 Creative Commons Attribution-Noncommercial-Share Alike license
+
+
+DISCLAIMER:  For now, this package works for me.
+
+"If my old code isn't sh*t, I haven't learned anything since I wrote it."

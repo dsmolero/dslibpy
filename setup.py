@@ -10,12 +10,10 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='dslibpy',
-    version='0.11.1',
+    version='0.12',
     packages=[
         'dslibpy',
-        'dslibpy.numlib',
         'dslibpy.templatetags',
-        'dslibpy.views',
     ],
     include_package_data=True,
     #license='BSD License',  # example license

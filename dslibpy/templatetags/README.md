@@ -4,61 +4,27 @@ Darwinian Software Library for Python
 
     Author: [Darwin Molero](http://blog.darwiniansoftware.com/about)
 
+number_tags
+-----------
 
-deccomma(amount, decimals=4)
-----------------------------
-Formats any number into the standard 99,999.0000 in templates. If `amount` has
-more digits in its decimal portion than the `decimals` parameter, the resulting
-number is rounded.
+###currency
 
-example for amount == 1234.5678:
-
-    {{ amount|deccomma:"2" }}
-
-will output:
-
-    1,234.57
+Use system locale settings to format currency numbers.
 
 
-deccomma_color_html(amount)
----------------------------
-Returns an html `<span>` element with the formatted number in standard form
-99,999.00. The decimal portion is rounded when it contains more than 2 digits.
+###deccomma
 
-The `<span>` element will have the class attribute:
-
-* "negative" ==> when the number is negative.
-* "positive" ==> when the number is positive.
-* "zero" ==> when the number is zero.
-
-example for amount == -1234.5678:
-
-    {{ amount|deccomma_color_html }}
-
-will output:
-
-    <span class="negative">-1,234.57</span>
+Humanize a number in the standard form -99,999.99
 
 
-percent_color_html(amount)
---------------------------
-This templatetag is basically the same with `deccomma_color_html` except that
-it will append a percent sign (%) to the number.
+date_tags
+---------
 
-example for rate == 45.678:
+###shorten_datetime
 
-    {{ rate|percent_color_html }}
-
-will output:
-
-    <span class="positive">45.68%</span>
-
-
-shorten_datetime(dt)
---------------------
-Given a datetime as dt:
-return only the time part of dt if dt is today,
-otherwise, return only the date part of dt.
+Given a datetime as *dt*:
+return only the time part of *dt* if *dt* is today,
+otherwise, return only the date part of it.
 
 
 << [Back to Main](../../README.md)
