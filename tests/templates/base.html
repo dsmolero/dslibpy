@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <title>Tests</title>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="card mt-4" style="width: 50rem;">
+      <div class="card-body">
+        <h5 class="card-title">Tests for dslibpy</h5>
+        <p class="card-text">Some quick example form to demonstrate the field and widget classes available.</p>
+        <hr/>
+
+        <p>
+          <form method="POST" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-primary" value="Ok">
+          </form>
+        </p>
+
+        <hr/>
+
+        <p class="card-text">
+          Month/Year: {{ month_year }} <br/>
+          Data Type: {{ data_type }}
+        </p>
+        <p class="card-text">
+          Vacation: {{ vacation }}
+        </p>
+        <p class="card-text">
+          Expiry Date: {{ expiry_date }}
+        </p>
+        <p class="card-text">
+          Card Expiry: {{ card_expiry }}
+        </p>
+
+        <a href="https://github.com/dsmolero/dslibpy">Go to dslibpy</a>
+
+      </div>
+    </div>
+
+
+
+    </div>
+
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

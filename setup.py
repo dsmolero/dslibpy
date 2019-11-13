@@ -10,7 +10,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='dslibpy',
-    version='0.12',
+    version='0.14',
     packages=[
         'dslibpy',
         'dslibpy.templatetags',
@@ -22,7 +22,7 @@ setup(
     long_description=README,
     url='http://darwiniansoftware.com/',
     author='Darwin Molero',
-    author_email='dsmolero@icloud.com',
+    author_email='darwinm@coderax.com',
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
@@ -38,6 +38,6 @@ setup(
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
     install_requires=[
-        "Django >= 1.2",
+        "Django >= 1.11",
     ]
 )

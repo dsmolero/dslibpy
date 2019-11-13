@@ -2,8 +2,9 @@ __author__ = "Darwin Molero (http://darwiniansoftware.com)"
 
 from unicodedata import normalize
 
+from datetime import datetime
 from django.template import Library
-from django.utils import timezone, timesince
+from django.utils import timesince
 
 
 register = Library()
@@ -18,7 +19,7 @@ def shorten_datetime(dt):
     :param dt:
     :return datetime:
     """
-    present = timezone.now()
+    present = datetime.now()
 
     if dt.date() == present.date():
         return dt.time()
@@ -37,7 +38,7 @@ def timediff(value, arg=None):
     if arg:
         cmp = arg
     else:
-        cmp = timezone.now()
+        cmp = datetime.now()
     if arg:
         return normalize('NFKD', timesince.timesince(value,cmp))
     elif value > cmp:
