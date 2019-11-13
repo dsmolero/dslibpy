@@ -8,12 +8,13 @@ Replace this with more appropriate tests for your application.
 
 __author__ = "Darwin Molero (http://darwiniansoftware.com)"
 
-import datetime
-
+from django import forms
 from django.test import TestCase
-from django.utils import timezone
+from datetime import datetime, timedelta, date
 
 from templatetags import number_tags, date_tags
+from .forms import CreditCardExpirationField, MonthYearWidget
+from .utils import eprint
 
 
 class SimpleTest(TestCase):
@@ -63,18 +64,18 @@ class NumlibTest(TestCase):
 
 
 class TemplatetagsTest(TestCase):
-    base_day = datetime.datetime(1980, 1, 1, 8, 00, 00)
+    base_day = datetime(1980, 1, 1, 8, 00, 00)
     KNOWN_VALUES = (
-        (datetime.datetime(2016, 3, 28, 17, 23, 00), "36 years, 2 months"),
+        (datetime(2016, 3, 8, 17, 23, 00), "36 years, 2 months"),
     )
 
     def test_shorten_datetime(self):
         # Test same date
-        today = timezone.now()
+        today = datetime.today()
         self.assertEqual(today.time(), date_tags.shorten_datetime(today))
 
         # Test not same date
-        delta = datetime.timedelta(days=1)
+        delta = timedelta(days=1)
         yesterday = today - delta
         self.assertEqual(yesterday.date(), date_tags.shorten_datetime(yesterday))
 
@@ -82,3 +83,66 @@ class TemplatetagsTest(TestCase):
         for someday, result in self.KNOWN_VALUES:
             ret = date_tags.timediff(self.base_day, someday)
             self.assertEqual(ret, result)
+
+
+class UtilsTest(TestCase):
+
+    def test(self):
+        eprint('This is a test error message.')
+        eprint('This is another error message.')
+
+
+class CreditCardExpirationFieldTest(TestCase):
+
+    def test(self):
+
+        class F(forms.Form):
+            cce = CreditCardExpirationField(widget=MonthYearWidget(min_year=2019, max_year=2021))
+
+        initial = {'cce': date(2020, 2, 1)}
+        f = F(initial=initial)
+        expected_html = '<p><label for="id_cce_0">Cce:</label> ' \
+            + '<select name="cce_0" required id="id_cce_0">' \
+            + '<option value="1">Jan</option>' \
+            + '<option value="2" selected>Feb</option>' \
+            + '<option value="3">Mar</option>' \
+            + '<option value="4">Apr</option>' \
+            + '<option value="5">May</option>' \
+            + '<option value="6">Jun</option>' \
+            + '<option value="7">Jul</option>' \
+            + '<option value="8">Aug</option>' \
+            + '<option value="9">Sep</option>' \
+            + '<option value="10">Oct</option>' \
+            + '<option value="11">Nov</option>' \
+            + '<option value="12">Dec</option>' \
+            + '</select><select name="cce_1" required id="id_cce_1">' \
+            + '<option value="2019">2019</option>' \
+            + '<option value="2020" selected>2020</option>' \
+            + '<option value="2021">2021</option>' \
+            + '</select></p>'
+        html = f.as_p()
+        self.assertEqual(html, expected_html)
+        test_input = {'cce_0': 5, 'cce_1': 2021}
+        f = F(data=test_input)
+        self.assertTrue(f.is_valid())
+        html = f.as_p()
+        expected_html = '<p><label for="id_cce_0">Cce:</label> ' \
+            + '<select name="cce_0" required id="id_cce_0">' \
+            + '<option value="1">Jan</option>' \
+            + '<option value="2">Feb</option>' \
+            + '<option value="3">Mar</option>' \
+            + '<option value="4">Apr</option>' \
+            + '<option value="5" selected>May</option>' \
+            + '<option value="6">Jun</option>' \
+            + '<option value="7">Jul</option>' \
+            + '<option value="8">Aug</option>' \
+            + '<option value="9">Sep</option>' \
+            + '<option value="10">Oct</option>' \
+            + '<option value="11">Nov</option>' \
+            + '<option value="12">Dec</option>' \
+            + '</select><select name="cce_1" required id="id_cce_1">' \
+            + '<option value="2019">2019</option>' \
+            + '<option value="2020">2020</option>' \
+            + '<option value="2021" selected>2021</option>' \
+            + '</select></p>'
+        self.assertEqual(html, expected_html)

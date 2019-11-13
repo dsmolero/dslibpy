@@ -1,8 +1,14 @@
+.idea
+
 *.log
 *.pot
 *.pyc
-local_settings.py
 *.egg
 *.egg-info
+
+*.db
+local_settings.py
+local.py
+
 dist
 build

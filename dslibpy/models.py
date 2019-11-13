@@ -1,12 +1,12 @@
 __author__ = 'Darwin Molero (http://darwiniansoftware.com)'
 
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.db import models
 
 
 class Entity(models.Model):
-    created_by = models.ForeignKey(User, related_name="created_set")
-    modified_by = models.ForeignKey(User, related_name="modified_set")
+    created_by = models.ForeignKey(get_user_model(), related_name="created_set")
+    modified_by = models.ForeignKey(get_user_model(), related_name="modified_set")
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
