@@ -7,6 +7,30 @@ CHANGE LOG
 Author: [Darwin Molero](http://blog.darwiniansoftware.com/about)
 
 
+v0.14
+-----
+This release is not backwards compatible with earlier versions.
+
+Now using pipenv.
+Bumped requirement to Django 1.11
+
+Added:
+
+* class models.Entity
+* class forms.CreditCardExpirationField
+* class forms.MonthYearWidget
+* class forms.SplitMonthYearField
+* class forms.SplitMonthYearWidget
+* class views.LoginRequiredView
+* logs.base_logging()
+* logs.pro_logging()
+* logs.dev_logging()
+* utils.insert_before()
+* utils.remove_non_ascii_1()
+* utils.str2bool()
+* utils.eprint()
+
+
 v0.12
 -----
 This release is not backwards compatible with earlier versions.
