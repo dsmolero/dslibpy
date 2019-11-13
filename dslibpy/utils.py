@@ -1,3 +1,4 @@
+import sys
 
 
 def insert_before(target_list, new_item, before_item):
@@ -33,4 +34,4 @@ def eprint(*args, **kwargs):
     """
     Print to stderr
     """
-    print(*args, file=sys.stderr, **kwargs)
+    print >> sys.stderr, str(*args), str(**kwargs)
