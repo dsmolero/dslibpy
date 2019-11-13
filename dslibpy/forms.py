@@ -84,32 +84,6 @@ class MonthYearWidget(forms.MultiWidget):
             return d
 
 
-class SplitMonthYearWidget(forms.MultiWidget):
-    MONTHS = {ii: ss[:3] for ii, ss in enumerate(month_name)}
-
-    def __init__(self, attrs=None, min_year=None, max_year=None, required=True):
-        year_now = date.today().year
-        if not min_year:
-            min_year = year_now
-        if not max_year:
-            max_year = year_now + 10
-        year_choices = [(year, year) for year in range(min_year, max_year + 1)]
-        month_choices = [(month, abbr) for month, abbr in self.MONTHS.items()]
-        if not required:
-            year_choices.append((None, '----'))
-            year_choices.sort()
-            month_choices[0] = (None, '---')
-        else:
-            del(month_choices[0])
-        widgets = (forms.Select(choices=month_choices, attrs=attrs), forms.Select(choices=year_choices, attrs=attrs))
-        super(SplitMonthYearWidget, self).__init__(widgets, attrs)
-
-    def decompress(self, value):
-        if value:
-            return [value[0], value[1]]
-        return [None, None]
-
-
 class SplitMonthYearField(forms.MultiValueField):
     default_error_messages = {
         'invalid_month': _(u'Enter a valid month.'),
@@ -135,3 +109,29 @@ class SplitMonthYearField(forms.MultiValueField):
                 raise forms.ValidationError(self.error_messages['required'])
             return value_list
         return None
+
+
+class SplitMonthYearWidget(forms.MultiWidget):
+    MONTHS = {ii: ss[:3] for ii, ss in enumerate(month_name)}
+
+    def __init__(self, attrs=None, min_year=None, max_year=None, required=True):
+        year_now = date.today().year
+        if not min_year:
+            min_year = year_now
+        if not max_year:
+            max_year = year_now + 10
+        year_choices = [(year, year) for year in range(min_year, max_year + 1)]
+        month_choices = [(month, abbr) for month, abbr in self.MONTHS.items()]
+        if not required:
+            year_choices.append((None, '----'))
+            year_choices.sort()
+            month_choices[0] = (None, '---')
+        else:
+            del(month_choices[0])
+        widgets = (forms.Select(choices=month_choices, attrs=attrs), forms.Select(choices=year_choices, attrs=attrs))
+        super(SplitMonthYearWidget, self).__init__(widgets, attrs)
+
+    def decompress(self, value):
+        if value:
+            return [value[0], value[1]]
+        return [None, None]
