@@ -12,7 +12,7 @@ from django import forms
 from django.test import TestCase
 from datetime import datetime, timedelta, date
 
-from templatetags import number_tags, date_tags
+from .templatetags import number_tags, date_tags, form_tags
 from .forms import CreditCardExpirationField, MonthYearWidget
 from .utils import eprint
 
@@ -84,6 +84,16 @@ class TemplatetagsTest(TestCase):
             ret = date_tags.timediff(self.base_day, someday)
             self.assertEqual(ret, result)
 
+    def test_is_boolean(self):
+
+        class F(forms.Form):
+            member_name = forms.CharField(max_length=255)
+            is_active = forms.BooleanField()
+
+        f = F()
+        self.assertTrue(form_tags.is_boolean(f.fields['is_active']))
+        self.assertFalse(form_tags.is_boolean(f.fields['member_name']))
+
 
 class UtilsTest(TestCase):
 
@@ -121,12 +131,13 @@ class CreditCardExpirationFieldTest(TestCase):
             + '<option value="2021">2021</option>' \
             + '</select></p>'
         html = f.as_p()
-        self.assertEqual(html, expected_html)
+        self.assertEqual(expected_html, html)
+
         test_input = {'cce_0': 5, 'cce_1': 2021}
         f = F(data=test_input)
-        self.assertTrue(f.is_valid())
         html = f.as_p()
-        expected_html = '<p><label for="id_cce_0">Cce:</label> ' \
+        expected_html = '<ul class="errorlist"><li>This card has expired.</li></ul>\n' \
+            + '<p><label for="id_cce_0">Cce:</label> ' \
             + '<select name="cce_0" required id="id_cce_0">' \
             + '<option value="1">Jan</option>' \
             + '<option value="2">Feb</option>' \
@@ -146,3 +157,8 @@ class CreditCardExpirationFieldTest(TestCase):
             + '<option value="2021" selected>2021</option>' \
             + '</select></p>'
         self.assertEqual(html, expected_html)
+
+        test_input = {'cce_0': 8, 'cce_1': date.today().year + 1}
+        f = F(data=test_input)
+        valid = f.is_valid()
+        self.assertTrue(valid)

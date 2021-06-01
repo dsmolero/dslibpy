@@ -5,10 +5,14 @@
 *.pyc
 *.egg
 *.egg-info
+.eggs/
 
 *.db
+*.sqlite3
 local_settings.py
 local.py
 
 dist
 build
+
+tests.xml

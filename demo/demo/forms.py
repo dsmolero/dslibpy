@@ -11,3 +11,4 @@ class MonthYearForm(forms.Form):
     expiry_date = CreditCardExpirationField(help_text='CreditCardExpirationField (date)')
     card_expiry = CreditCardExpirationField(widget=MonthYearWidget,
                                             help_text='CreditCardExpirationField using MonthYearWidget')
+    im_happy = forms.BooleanField(required=False)

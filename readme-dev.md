@@ -6,8 +6,7 @@ Testing
 -------
 at the project directory
 
-    $ cd tests
-    $ python manage.py test dslibpy
+    $ python setup.py pytest
     
 
 Versioning convention
@@ -17,9 +16,18 @@ Versioning convention
 
 New Releases
 ------------
-    1. Change the version number in the first line of README.md
-    2. Change the version number in setup.py
-    3. Update the CHANGELOG.md
+    
+1. Update the dependency requirements in setup.py    
+    - packages
+    - python_requires
+    - classifiers['Programming Language :: Python']
+
+2. Change the version number in the first line of README.md
+
+3. Change the version number in setup.py
+    - version
+    
+4. Update the CHANGELOG.md
 
 
 Recompiling

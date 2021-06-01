@@ -5,8 +5,8 @@ from django.db import models
 
 
 class Entity(models.Model):
-    created_by = models.ForeignKey(get_user_model(), related_name="created_set")
-    modified_by = models.ForeignKey(get_user_model(), related_name="modified_set")
+    created_by = models.ForeignKey(get_user_model(), related_name="created_set", on_delete=models.CASCADE)
+    modified_by = models.ForeignKey(get_user_model(), related_name="modified_set", on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 

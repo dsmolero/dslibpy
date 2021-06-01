@@ -34,4 +34,4 @@ def eprint(*args, **kwargs):
     """
     Print to stderr
     """
-    print >> sys.stderr, str(*args), str(**kwargs)
+    print(*args, file=sys.stderr, **kwargs)
