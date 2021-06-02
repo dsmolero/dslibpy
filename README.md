@@ -1,5 +1,5 @@
 
-[dslibpy v0.14](https://github.com/dsmolero/dslibpy)
+[dslibpy v3.7.22](https://github.com/dsmolero/dslibpy)
 ========================================================
 
 
@@ -19,8 +19,8 @@ articles.
 
 Requirements
 ------------
-* python 2.7 (2.7.16 as of this writing)
-* django >= 1.11 (1.11.23 as of this writing)
+
+See [setup.py](setup.py)
 
 
 Installation
@@ -95,6 +95,10 @@ For example:
         form = CCForm(request.POST or None, initial={'card_expiry': date(2020, 2, 3)})
     
 > The `day` part of the field is always the last day of the month.
+
+_**MonthYearWidget**_
+
+A widget class based on MutiWidget useful for fields that require month and year values.
 
 
 ### dslibpy.views
@@ -177,28 +181,59 @@ To test, run the test web app (see below) and visit:
 The log file at `/var/tmp/tests.log` should contain the test error messages. 
 
 
-
 ### dslibpy.templatetags
+
 Reusable template tags for formatting numbers and dates in templates. Documentation
 found in [dslibpy/templatetags/README.md](dslibpy/templatetags/README.md).
 
 
-Testing
--------
+Development
+-----------
+
+### Environment
+
+    $ conda deactivate
+    $ conda create --name dslibpy python=3.7
+    $ conda activate dslibpy
+
+### Installation
+
+    $ pip install -q -e .
+
+### Running tests
 
 To run tests on `dslibpy`
 
-    $ pipenv run python manage.py test dslibpy
+    $ python setup.py pytest
+  
+or
+    
+    $ python manage.py test
 
 
-Test Web App
-------------
+### Demo Web App
 
-The `tests` directory inside this project's directory is a Django web application.
-It is a simple app to test the features of `dslibpy`. You can launch it with:
+The `demo` directory inside this project's directory is a Django web application.
+It is a simple app to test the features of *dslibpy*. You can launch it with:
 
-    $ cd tests
-    $ pipenv run python manage.py runserver
+    $ python manage.py runserver
     
 Visit `http://localhost:8000/` to see a test form in action.
 
+
+Production
+----------
+
+To create the distributable package, first install the *build* package.
+
+    $ pip install --upgrade build
+    
+Then run `build`:
+
+    $ python -m build
+    
+This will put the built package in the `dist/` directory.
+
+To view the files in the tar ball.
+
+    $ tar -tzvf dist/dslibpy-v.v.v.v.tar.gz

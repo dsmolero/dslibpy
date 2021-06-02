@@ -7,6 +7,22 @@ CHANGE LOG
 Author: [Darwin Molero](http://blog.darwiniansoftware.com/about)
 
 
+v3.7.22
+-------
+This release is not backwards compatible with earlier versions.
+
+Changes:
+- first version to support Python 3
+- version number meanings:
+    v3  => support for Python 3
+    .7  => supports Python 3.7
+    .22 => support for Django 2.2
+    .0  => bugfix
+- Bumped for Django 2.2 and Python 3.7
+- Now using setuptools configurations
+- Now using pytest test runner
+
+
 v0.14
 -----
 This release is not backwards compatible with earlier versions.

@@ -1,28 +1,60 @@
 __author__ = 'Darwin Molero (http://darwiniansoftware.com)'
 
 import os
-from setuptools import setup
+from setuptools import setup, find_packages
+
 
 README = open(os.path.join(os.path.dirname(__file__), 'README.md')).read()
 
 # allow setup.py to be run from any path
-os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
+# os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
+
+#
+# packages in this project
+#
+packages = [
+    'dslibpy',
+    'dslibpy/templatetags',
+    ]
+
+#
+# Required packages when deployed by end users in production
+#
+install_requires = [
+    'Django>=2.2',
+    ]
+
+#
+# Dependencies for development
+#
+setup_requires = [
+    'pytest<7,>=5',
+    'pytest-django',
+    'pytest-factoryboy',
+    'pytest-runner',
+    'wheel',
+    'setuptools',
+    ]
+
+#
+# Dependencies for running tests in development
+#
+tests_require = [
+    ]
 
 setup(
     name='dslibpy',
-    version='0.14',
-    packages=[
-        'dslibpy',
-        'dslibpy.templatetags',
-    ],
+    version='3.7.22',
+    author='Darwin Molero',
+    author_email='darwinm@coderax.com',
+    url='http://darwiniansoftware.com/',
+    packages=packages,
+    python_requires='>=3.7',
     include_package_data=True,
     #license='BSD License',  # example license
     license='LICENSE.txt',
     description='Darwinian Software Library for Python',
     long_description=README,
-    url='http://darwiniansoftware.com/',
-    author='Darwin Molero',
-    author_email='darwinm@coderax.com',
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
@@ -32,12 +64,12 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         # replace these appropriately if you are using Python 3
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.7',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
-    install_requires=[
-        "Django >= 1.11",
-    ]
+    install_requires=install_requires,
+    setup_requires=setup_requires,
+    tests_require=tests_require,
 )

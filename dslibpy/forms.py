@@ -1,11 +1,10 @@
 __author__ = "Darwin Molero (http://darwiniansoftware.com)"
 
 from calendar import monthrange, month_name
-from datetime import date, datetime
+from datetime import date
 from django import forms
-from django.core.validators import MinValueValidator
-from django.forms.fields import EMPTY_VALUES
-from django.utils.translation import ugettext as _
+from django.core.validators import MinValueValidator, EMPTY_VALUES
+from django.utils.translation import gettext as _
 from logging import getLogger
 
 
@@ -32,15 +31,9 @@ class CreditCardExpirationField(forms.DateField):
         Credit cards are valid through the last day of the specified month.
         """
         value = super(CreditCardExpirationField, self).to_python(value)
-        if isinstance(value, list):
-            month = value[0]
-            year = value[1]
-        else:
-            month = value.month
-            year = value.year
+        month, year = value if isinstance(value, list) else [value.month, value.year]
         last_day = monthrange(year, month)[1]
         card_expiry = date(year, month, last_day)
-        log.debug('ret: {}'.format(card_expiry))
         return card_expiry
 
 
@@ -56,12 +49,12 @@ class MonthYearWidget(forms.MultiWidget):
         year_choices = [(year, year) for year in range(min_year, max_year + 1)]
         month_choices = [(month, abbr) for month, abbr in self.MONTHS.items()]
         if not required:
-            year_choices.append((None, '----'))
-            year_choices.sort()
+            year_choices.insert(0, (None, '----'))
             month_choices[0] = (None, '---')
         else:
             del(month_choices[0])
-        widgets = (forms.Select(choices=month_choices, attrs=attrs), forms.Select(choices=year_choices, attrs=attrs))
+        widgets = (forms.Select(choices=month_choices, attrs=attrs),
+                   forms.Select(choices=year_choices, attrs=attrs))
         super(MonthYearWidget, self).__init__(widgets, attrs)
 
     def decompress(self, value):
@@ -70,18 +63,15 @@ class MonthYearWidget(forms.MultiWidget):
         return [None, None]
 
     def value_from_datadict(self, data, files, name):
-        datelist = [
-            widget.value_from_datadict(data, files, name + '_%s' % ii)
-            for ii, widget in enumerate(self.widgets)
-        ]
         try:
-            month = int(datelist[0])
-            year = int(datelist[1])
-            d = date(day=monthrange(year, month)[1], month=month, year=year)
+            month, year = [
+                int(widget.value_from_datadict(data, files, name + '_%s' % ii))
+                for ii, widget in enumerate(self.widgets)
+            ]
         except ValueError:
             return None
         else:
-            return d
+            return date(year, month, monthrange(year, month)[1])
 
 
 class SplitMonthYearField(forms.MultiValueField):
@@ -99,7 +89,7 @@ class SplitMonthYearField(forms.MultiValueField):
             forms.IntegerField(error_messages={'invalid': errors['invalid_year']}),
 
         )
-        super(SplitMonthYearField, self).__init__(fields, *args, **kwargs)
+        super(SplitMonthYearField, self).__init__(fields, **kwargs)
 
     def compress(self, value_list):
         if value_list:
@@ -123,8 +113,7 @@ class SplitMonthYearWidget(forms.MultiWidget):
         year_choices = [(year, year) for year in range(min_year, max_year + 1)]
         month_choices = [(month, abbr) for month, abbr in self.MONTHS.items()]
         if not required:
-            year_choices.append((None, '----'))
-            year_choices.sort()
+            year_choices.insert(0, (None, '----'))
             month_choices[0] = (None, '---')
         else:
             del(month_choices[0])
