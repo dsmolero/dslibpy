@@ -19,13 +19,15 @@ New Releases
     
 1. Update the dependency requirements in setup.py    
     - packages
-    - python_requires
-    - classifiers['Programming Language :: Python']
+    - install_requires
+    - setup_requires
+    - tests_require
+    - setup(classifiers=['Programming Language :: Python' ...] ...)
 
 2. Change the version number in the first line of README.md
 
 3. Change the version number in setup.py
-    - version
+    - setup(version='v.v.v.v' ...)
     
 4. Update the CHANGELOG.md
 
