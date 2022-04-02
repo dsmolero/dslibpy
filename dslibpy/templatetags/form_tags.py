@@ -9,7 +9,10 @@ register = Library()
 def is_boolean(field):
     # return isinstance(value, CheckboxInput)
     boolean_widgets = [CheckboxInput, RadioSelect]
-    widget = field.widget
+    try:
+        widget = field.field.widget
+    except AttributeError:
+        widget = field.widget
     _is_boolean = type(widget) in boolean_widgets
     return _is_boolean
 

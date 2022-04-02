@@ -7,6 +7,13 @@ CHANGE LOG
 Author: [Darwin Molero](http://blog.darwiniansoftware.com/about)
 
 
+v3.7.2-2.2
+----------
+
+Changes:
+- fixed Attribute error when accessing field.field.widget
+
+
 v3.7.2-2.1
 ----------
 

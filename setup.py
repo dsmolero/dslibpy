@@ -44,7 +44,7 @@ tests_require = [
 
 setup(
     name='dslibpy',
-    version='3.7.2-2.1',
+    version='3.7.2-2.2',
     author='Darwin Molero',
     author_email='darwinm@coderax.com',
     url='http://darwiniansoftware.com/',
