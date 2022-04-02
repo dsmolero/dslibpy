@@ -21,7 +21,7 @@ packages = [
 # Required packages when deployed by end users in production
 #
 install_requires = [
-    'Django>=2.2',
+    'Django>=2.2,<2.3',
     ]
 
 #
@@ -44,7 +44,7 @@ tests_require = [
 
 setup(
     name='dslibpy',
-    version='3.7.22',
+    version='3.7.2-2.1',
     author='Darwin Molero',
     author_email='darwinm@coderax.com',
     url='http://darwiniansoftware.com/',
@@ -57,6 +57,7 @@ setup(
     long_description=README,
     classifiers=[
         'Environment :: Web Environment',
+        # specify the Django version in the install_requires list above
         'Framework :: Django',
         'Intended Audience :: Developers',
         #'License :: OSI Approved :: BSD License', # example license

@@ -7,6 +7,18 @@ CHANGE LOG
 Author: [Darwin Molero](http://blog.darwiniansoftware.com/about)
 
 
+v3.7.2-2.1
+----------
+
+Changes:
+- removed a debugging print statement
+- version number meanings:
+    v3    => support for Python 3
+    .7    => supports Python 3.7
+    .2-2  => support for Django 2.2
+    .0    => bugfix
+
+
 v3.7.22
 -------
 This release is not backwards compatible with earlier versions.
