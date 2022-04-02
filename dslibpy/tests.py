@@ -91,8 +91,10 @@ class TemplatetagsTest(TestCase):
             is_active = forms.BooleanField()
 
         f = F()
-        self.assertTrue(form_tags.is_boolean(f.fields['is_active']))
+        self.assertFalse(form_tags.is_boolean(f.visible_fields()[0]))
         self.assertFalse(form_tags.is_boolean(f.fields['member_name']))
+        self.assertTrue(form_tags.is_boolean(f.visible_fields()[1]))
+        self.assertTrue(form_tags.is_boolean(f.fields['is_active']))
 
 
 class UtilsTest(TestCase):

@@ -1,5 +1,5 @@
 
-[dslibpy v3.7.2-2.1](https://github.com/dsmolero/dslibpy)
+[dslibpy v3.7.2-2.2](https://github.com/dsmolero/dslibpy)
 ========================================================
 
 
